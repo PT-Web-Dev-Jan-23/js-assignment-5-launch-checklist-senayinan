@@ -1,19 +1,28 @@
 // Write your JavaScript code here!
 window.addEventListener("load", function() {
 
+    let list, container;
 
     let form = document.querySelector("form");
 
+    list = document.getElementById('faultyItems');
+
+    list.style.visibility = 'hidden';
+
     form.addEventListener("submit", function(event) {
         
-        let list = document.querySelector("list");
+        
+        
+        
+
 
         let pilotName = document.querySelector("input[name=pilotName]").value;
         let copilotName = document.querySelector("input[name=copilotName]").value;
         let fuelLevel = document.querySelector("input[name=fuelLevel]").value;
         let cargoMass = document.querySelector("input[name=cargoMass]").value;
         
-        let result = formSubmission(this.document, list,pilotName, copilotName, fuelLevel, cargoMass );
+
+        let result = formSubmission(window.document, list ,pilotName, copilotName, fuelLevel, cargoMass );
 
         event.preventDefault(); 
 
@@ -38,7 +47,7 @@ window.addEventListener("load", function() {
 
        let selectedPlanet = pickPlanet(listedPlanets);
 
-        addDestinationInfo(this.document, selectedPlanet.name, selectedPlanet.diameter,selectedPlanet.star,selectedPlanet.distance,selectedPlanet.moons,selectedPlanet.image );
+        addDestinationInfo(window.document, selectedPlanet.name, selectedPlanet.diameter,selectedPlanet.star,selectedPlanet.distance,selectedPlanet.moons,selectedPlanet.image );
 
       
    });

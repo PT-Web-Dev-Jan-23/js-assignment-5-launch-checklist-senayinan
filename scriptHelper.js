@@ -4,7 +4,8 @@ require('isomorphic-fetch');
 function addDestinationInfo(document, name, diameter, star, distance, moons, imageUrl) {
    // Here is the HTML formatting for our mission target div.
    
-     let missionInfo =`<h2>Mission Destination</h2>
+
+     let missionTarget =`<h2>Mission Destination</h2>
                 <ol>
                     <li>Name:${name} </li>
                     <li>Diameter: ${diameter} </li>
@@ -14,7 +15,7 @@ function addDestinationInfo(document, name, diameter, star, distance, moons, ima
                 </ol>
                 <img src="${imageUrl}">`;
 
-    this.document.getElementById("missionTarget").innerHTML = missionInfo;
+    document.getElementById("missionTarget").innerHTML = missionTarget;
    
 }
 
@@ -38,6 +39,7 @@ function validateInput(testInput) {
 
 function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
    
+
     //let's check if all fields are entered
     
     let readyForTakeOff = true;
@@ -59,49 +61,57 @@ function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
     if (Number(fuelLevel)<10000)
     {
 
-        this.document.getElementById("faultyItems").style.visibility = 'visible';
+        document.getElementById("faultyItems").style.visibility = 'visible';
 
-        this.document.getElementById("pilotStatus").innerHTML = pilot + " is ready for launch";
+        document.getElementById("pilotStatus").innerHTML ="Pilot " + pilot + " is ready for launch";
 
-        this.document.getElementById("copilotStatus").innerHTML = copilot + " is ready for launch";
+        document.getElementById("copilotStatus").innerHTML = "Co-pilot " + copilot + " is ready for launch";
 
-        this.document.getElementById("fuelStatus").innerHTML = "there is not enough fuel for the journey.";
+        document.getElementById("fuelStatus").innerHTML = "Fuel level too low for launch";
 
-        this.document.getElementById("launchStatus").innerHTML = "Shuttle not ready for launch";
+        document.getElementById("launchStatus").innerHTML = "Shuttle Not Ready for Launch";
 
-        this.document.getElementById("launchStatus").style.color = "red";
+        document.getElementById("launchStatus").style.color = "rgb(199, 37, 78)";
 
         readyForTakeOff = false
 
+    }
+    else
+    {
+        document.getElementById("fuelStatus").innerHTML = "Fuel level high enough for launch";
     }
 
     if (Number(cargoLevel)>10000)
     {
 
-        this.document.getElementById("faultyItems").style.visibility = 'visible';
+        document.getElementById("faultyItems").style.visibility = 'visible';
 
-        this.document.getElementById("pilotStatus").innerHTML = pilot;
+        document.getElementById("pilotStatus").innerHTML ="Pilot " + pilot + " is ready for launch";
 
-        this.document.getElementById("copilotStatus").innerHTML = copilot;
+        document.getElementById("copilotStatus").innerHTML = "Co-pilot " + copilot + " is ready for launch";
 
-        this.document.getElementById("cargoStatus").innerHTML = "there is too much mass for the shuttle to take off.";
+        document.getElementById("cargoStatus").innerHTML = "Cargo mass too heavy for launch";
 
-        this.document.getElementById("launchStatus").innerHTML = "Shuttle not ready for launch";
+        document.getElementById("launchStatus").innerHTML = "Shuttle Not Ready for Launch";
 
-        this.document.getElementById("launchStatus").style.color = "red";
+        document.getElementById("launchStatus").style.color = "rgb(199, 37, 78)";
 
         readyForTakeOff = false;
 
+    }
+    else
+    {
+        document.getElementById("cargoStatus").innerHTML = "Cargo mass low enough for launch";
     }
 
 
     if (readyForTakeOff)
     {
-        this.document.getElementById("launchStatus").innerHTML = "Shuttle is ready for launch";
+        document.getElementById("launchStatus").innerHTML = "Shuttle is Ready for Launch";
 
-        this.document.getElementById("launchStatus").style.color = "green";
+        document.getElementById("launchStatus").style.color = "rgb(65, 159, 106)";
 
-        this.document.getElementById("faultyItems").style.visibility = 'hidden';
+        list.style.visibility = 'visible';
     }
 
 
